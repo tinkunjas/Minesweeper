@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>💣 Minesweeper</h1>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="level">Razina:</label>
+                <select id="level">
+                    <option value="beginner">Početnik (8x8, 10 mina)</option>
+                    <option value="intermediate">Srednji (16x16, 40 mina)</option>
+                    <option value="expert">Ekspert (25x25, 99 mina)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="game-stats">
+            <div class="stat">
+                <span class="stat-label">Vrijeme</span>
+                <span class="stat-value" id="timer">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Mine</span>
+                <span class="stat-value" id="mines-count">10</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Otvoreno</span>
+                <span class="stat-value" id="opened-count">0</span>
+            </div>
+        </div>
+        
+        <div class="game-buttons">
+            <button class="btn btn-primary" onclick="startGame()">Započni igru</button>
+            <button class="btn btn-success" onclick="restartGame()">Nova igra</button>
+            <button class="btn btn-danger" onclick="destroyGame()">Završi igru</button>
+        </div>
+        
+        <div id="board">
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px; color: #7f8c8d; font-size: 0.9rem;">
+            <p><strong>Upute:</strong> Klikni lijevom miškom za otvaranje polja, desnom miškom za zastavicu</p>
+        </div>
+    </div>
+
+    <script src="Eventi.js"></script>
+    <script src="modelploce.js"></script>
+    <script src="plocaview.js"></script>
+    <script src="igra.js"></script>
+    <script src="ploca.js"></script>
+    
+    <script>
+        function startGame() {
+            console.log('Start button clicked');
+            if (window.Game) {
+                console.log('Game object found, starting...');
+                window.Game.start();
+            } else {
+                console.error('Game object not found');
+                alert('Game not initialized');
+            }
+        }
+        
+        function restartGame() {
+            console.log('Restart button clicked');
+            if (window.Game) {
+                console.log('Game object found, restarting...');
+                window.Game.restart();
+            } else {
+                console.error('Game object not found');
+                alert('Game not initialized');
+            }
+        }
+        
+        function destroyGame() {
+            console.log('Destroy button clicked');
+            if (window.Game) {
+                console.log('Game object found, destroying...');
+                window.Game.destroy();
+            } else {
+                console.error('Game object not found');
+                alert('Game not initialized');
+            }
+        }
+        
+        window.addEventListener('load', function() {
+            console.log('Page loaded');
+            if (window.Game) {
+                console.log('Game object is available');
+            } else {
+                console.error('Game object is NOT available');
+            }
+        });
+    </script>
+</body>
+</html>
